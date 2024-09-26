@@ -10,6 +10,8 @@ public class ApiPersonalNutriApplication {
 		SpringApplication.run(ApiPersonalNutriApplication.class, args);
 
 		System.out.println("Teste");
+
+		System.out.println("André Lindo!");
 	}
 
 }
