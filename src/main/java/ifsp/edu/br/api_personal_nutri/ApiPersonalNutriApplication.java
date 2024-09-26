@@ -12,6 +12,7 @@ public class ApiPersonalNutriApplication {
 		System.out.println("Teste");
 
 		System.out.println("André Lindo!");
+		System.out.println("Joao Feio!");
 	}
 
 }
