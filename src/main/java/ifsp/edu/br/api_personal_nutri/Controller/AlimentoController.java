@@ -1,13 +1,23 @@
 package ifsp.edu.br.api_personal_nutri.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import ifsp.edu.br.api_personal_nutri.Model.Alimento;
+import ifsp.edu.br.api_personal_nutri.Repository.AlimentoRepository;
 
 @RestController
 @RequestMapping("/api/personalnutri/alimentos")
 public class AlimentoController {
+    @Autowired // Amarração das tabelas com os métodos do banco
+    AlimentoRepository alimentoRepository;
+
+    // Falta adicionar os métodos oferecidos pelo CRUD do Spring Data JPA (CrudRepository)
+    // Com isso, podemos tirar a listaAlimentos e adicionar diretamente no banco destinado
+    // -> Para ver os métodos, acessar o slide de aula ou buscar na documentação
+
+    
 
     // Lista fictícia de alimentos para simular o banco de dados
     private List<Alimento> listaAlimentos = new ArrayList<>();

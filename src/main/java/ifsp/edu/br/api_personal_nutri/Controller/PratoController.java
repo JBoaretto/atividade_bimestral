@@ -1,13 +1,17 @@
 package ifsp.edu.br.api_personal_nutri.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import ifsp.edu.br.api_personal_nutri.Model.Prato;
+import ifsp.edu.br.api_personal_nutri.Repository.PratoRespository;
 
 @RestController
 @RequestMapping("/api/personalnutri/pratos")
 public class PratoController {
+    @Autowired
+    PratoRespository pratoRespository;
 
     // Lista fictícia de pratos para simular o banco de dados
     private List<Prato> listaPratos = new ArrayList<>();
