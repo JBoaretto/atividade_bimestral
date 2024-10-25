@@ -2,10 +2,13 @@ package ifsp.edu.br.api_personal_nutri.Model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Prato {
@@ -15,6 +18,8 @@ public class Prato {
     private Long id_prato;
     private String nome;
     private String info;
+
+    @OneToMany(mappedBy = "prato", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Integer> id_alimentos;
 
     public Prato(){}

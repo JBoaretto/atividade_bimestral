@@ -1,9 +1,13 @@
 package ifsp.edu.br.api_personal_nutri.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Alimento {
@@ -15,7 +19,13 @@ public class Alimento {
     private double lipidios;
     private double calorias;
     private double fibras;
-    private int carga_glicemica;
+    private int carga_glicemica;    
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "prato_fk")
+    private Prato prato;
+
 
     public Alimento(){}
 
@@ -76,6 +86,13 @@ public class Alimento {
         this.carga_glicemica = carga_glicemica;
     }
 
+    public Prato getPrato() {
+        return prato;
+    }
+
+    public void setPrato(Prato prato) {
+        this.prato = prato;
+    }
     
 
 }
