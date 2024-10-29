@@ -20,11 +20,12 @@ public class Prato {
     private String info;
 
     @OneToMany(mappedBy = "prato", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private List<Integer> id_alimentos;
+    private List<Alimento> id_alimentos;
 
-    public Prato(){}
+    public Prato() {
+    }
 
-    public Prato(Long id_prato, String nome, String info, List<Integer> id_alimentos) {
+    public Prato(Long id_prato, String nome, String info, List<Alimento> id_alimentos) {
         this.id_prato = id_prato;
         this.nome = nome;
         this.info = info;
@@ -55,11 +56,11 @@ public class Prato {
         this.info = info;
     }
 
-    public List<Integer> getId_alimentos() {
+    public List<Alimento> getId_alimentos() {
         return id_alimentos;
     }
 
-    public void setId_alimentos(List<Integer> id_alimentos) {
+    public void setId_alimentos(List<Alimento> id_alimentos) {
         this.id_alimentos = id_alimentos;
     }
 }
