@@ -1,58 +1,58 @@
 package ifsp.edu.br.api_personal_nutri.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import ifsp.edu.br.api_personal_nutri.Model.Prato;
+import ifsp.edu.br.api_personal_nutri.Repository.PratoRespository;
 
 @RestController
 @RequestMapping("/api/personalnutri/pratos")
 public class PratoController {
 
-    // Lista fictícia de pratos para simular o banco de dados
-    private List<Prato> listaPratos = new ArrayList<>();
+    @Autowired
+    PratoRespository pratoRespository;
 
     // GET: Lista de pratos
     @GetMapping
     public List<Prato> getAllPratos() {
-        return listaPratos;
+        return StreamSupport.stream(pratoRespository
+                .findAll()
+                .spliterator(), false)
+                .collect(Collectors.toList());
     }
 
     // GET: Recupera um prato específico por ID
     @GetMapping("/{id_prato}")
-    public Prato getPratoById(@PathVariable int id_prato) {
-        return listaPratos.stream()
-                .filter(prato -> prato.getId_prato() == id_prato)
-                .findFirst()
-                .orElse(null);
+    public Prato getPratoById(@PathVariable Long id_prato) {
+        return pratoRespository.findById(id_prato).orElse(null);
     }
 
     // POST: Cria um novo prato
     @PostMapping
     public Prato createPrato(@RequestBody Prato prato) {
-        listaPratos.add(prato);
-        return prato;
+        return pratoRespository.save(prato);
     }
 
     // PUT: Atualiza um prato existente
     @PutMapping("/{id_prato}")
-    public Prato updatePrato(@PathVariable int id_prato, @RequestBody Prato novoPrato) {
-        Prato pratoExistente = listaPratos.stream()
-                .filter(prato -> prato.getId_prato() == id_prato)
-                .findFirst()
+    public Prato updatePrato(@PathVariable Long id_prato, @RequestBody Prato novoPrato) {
+        return pratoRespository.findById(id_prato)
+                .map(pratoExistente -> {
+                    pratoExistente.setNome(novoPrato.getNome());
+                    pratoExistente.setInfo(novoPrato.getInfo());
+                    pratoExistente.setId_alimentos(novoPrato.getId_alimentos());
+                    return pratoRespository.save(pratoExistente);
+                })
                 .orElse(null);
-
-        if (pratoExistente != null) {
-            pratoExistente.setNome(novoPrato.getNome());
-            pratoExistente.setInfo(novoPrato.getInfo());
-            pratoExistente.setId_alimentos(novoPrato.getId_alimentos());
-        }
-        return pratoExistente;
     }
 
     // DELETE: Deleta um prato
     @DeleteMapping("/{id_prato}")
-    public void deletePrato(@PathVariable int id_prato) {
-        listaPratos.removeIf(prato -> prato.getId_prato() == id_prato);
+    public void deletePrato(@PathVariable Long id_prato) {
+        pratoRespository.deleteById(id_prato);
     }
 }

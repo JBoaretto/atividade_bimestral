@@ -1,18 +1,35 @@
 package ifsp.edu.br.api_personal_nutri.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Alimento {
-    private int id_alimento;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_alimento;
     private String nome;
     private double lipidios;
     private double calorias;
     private double fibras;
-    private int carga_glicemica;
+    private int carga_glicemica;    
 
-    public Alimento(){
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "prato_fk")
+    private Prato prato;
 
-    }
 
-    public Alimento(int id_alimento, String nome, double lipidios, double calorias, double fibras, int carga_glicemica) {
+    public Alimento(){}
+
+    public Alimento(Long id_alimento, String nome, double lipidios, double calorias, double fibras, int carga_glicemica) {
         this.id_alimento = id_alimento;
         this.nome = nome;
         this.lipidios = lipidios;
@@ -21,11 +38,11 @@ public class Alimento {
         this.carga_glicemica = carga_glicemica;
     }
 
-    public int getId_alimento() {
+    public Long getId_alimento() {
         return id_alimento;
     }
 
-    public void setId_alimento(int id_alimento) {
+    public void setId_alimento(Long id_alimento) {
         this.id_alimento = id_alimento;
     }
 
@@ -69,6 +86,13 @@ public class Alimento {
         this.carga_glicemica = carga_glicemica;
     }
 
+    public Prato getPrato() {
+        return prato;
+    }
+
+    public void setPrato(Prato prato) {
+        this.prato = prato;
+    }
     
 
 }
