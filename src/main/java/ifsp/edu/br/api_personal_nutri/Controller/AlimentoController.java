@@ -11,6 +11,7 @@ import ifsp.edu.br.api_personal_nutri.Repository.AlimentoRepository;
 
 @RestController
 @RequestMapping("/api/personalnutri/alimentos")
+@CrossOrigin(origins = "*") // Permite requisições de qualquer origem
 public class AlimentoController {
     @Autowired
     AlimentoRepository alimentoRepository;

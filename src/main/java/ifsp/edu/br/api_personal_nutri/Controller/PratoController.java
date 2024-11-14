@@ -11,6 +11,7 @@ import ifsp.edu.br.api_personal_nutri.Repository.PratoRespository;
 
 @RestController
 @RequestMapping("/api/personalnutri/pratos")
+@CrossOrigin(origins = "*") // Permite requisições de qualquer origem
 public class PratoController {
 
     @Autowired
