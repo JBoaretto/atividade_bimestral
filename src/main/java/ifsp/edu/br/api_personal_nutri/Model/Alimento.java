@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Alimento {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_alimento;
@@ -19,23 +19,29 @@ public class Alimento {
     private double lipidios;
     private double calorias;
     private double fibras;
-    private int carga_glicemica;    
+    private int carga_glicemica;
+    private String recomendacaoSaudavel;
+
+    private String caminhoImagem; // Novo campo para o caminho da imagem armazenada
 
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "prato_fk")
     private Prato prato;
 
+    public Alimento() {
+    }
 
-    public Alimento(){}
-
-    public Alimento(Long id_alimento, String nome, double lipidios, double calorias, double fibras, int carga_glicemica) {
+    public Alimento(Long id_alimento, String nome, double lipidios, double calorias, double fibras,
+            int carga_glicemica, String recomendacaoSaudavel, String caminhoImagem) {
         this.id_alimento = id_alimento;
         this.nome = nome;
         this.lipidios = lipidios;
         this.calorias = calorias;
         this.fibras = fibras;
         this.carga_glicemica = carga_glicemica;
+        this.recomendacaoSaudavel = recomendacaoSaudavel;
+        this.caminhoImagem = caminhoImagem;
     }
 
     public Long getId_alimento() {
@@ -93,6 +99,21 @@ public class Alimento {
     public void setPrato(Prato prato) {
         this.prato = prato;
     }
-    
+
+    public String getCaminhoImagem() {
+        return caminhoImagem;
+    }
+
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
+    }
+
+    public String getRecomendacaoSaudavel() {
+        return recomendacaoSaudavel;
+    }
+
+    public void setRecomendacaoSaudavel(String recomendacaoSaudavel) {
+        this.recomendacaoSaudavel = recomendacaoSaudavel;
+    }
 
 }
