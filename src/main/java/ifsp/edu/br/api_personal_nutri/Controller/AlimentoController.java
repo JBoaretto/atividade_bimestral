@@ -45,7 +45,9 @@ public class AlimentoController {
             alimentoExistente.setLipidios(novoAlimento.getLipidios());
             alimentoExistente.setCalorias(novoAlimento.getCalorias());
             alimentoExistente.setFibras(novoAlimento.getFibras());
-            alimentoExistente.setCarga_glicemica(novoAlimento.getCarga_glicemica());
+            alimentoExistente.setCargaGlicemica(novoAlimento.getCargaGlicemica());
+            alimentoExistente.setImagemUrl(novoAlimento.getImagemUrl());
+            alimentoExistente.setMode(novoAlimento.getMode());
             return alimentoRepository.save(alimentoExistente);
         }).orElse(null);
     }

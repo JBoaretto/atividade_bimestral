@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Alimento {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_alimento;
@@ -19,23 +19,30 @@ public class Alimento {
     private double lipidios;
     private double calorias;
     private double fibras;
-    private int carga_glicemica;    
+    private int cargaGlicemica;
+    private String recomendacaoSaudavel;
+    private String imagemUrl;
+    private Boolean mode;
 
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "prato_fk")
     private Prato prato;
 
+    public Alimento() {
+    }
 
-    public Alimento(){}
-
-    public Alimento(Long id_alimento, String nome, double lipidios, double calorias, double fibras, int carga_glicemica) {
+    public Alimento(Long id_alimento, String nome, double lipidios, double calorias, double fibras, int cargaGlicemica,
+            String recomendacaoSaudavel, String imagemUrl, Boolean mode) {
         this.id_alimento = id_alimento;
         this.nome = nome;
         this.lipidios = lipidios;
         this.calorias = calorias;
         this.fibras = fibras;
-        this.carga_glicemica = carga_glicemica;
+        this.cargaGlicemica = cargaGlicemica;
+        this.recomendacaoSaudavel = recomendacaoSaudavel;
+        this.imagemUrl = imagemUrl;
+        this.mode = mode;
     }
 
     public Long getId_alimento() {
@@ -78,12 +85,12 @@ public class Alimento {
         this.fibras = fibras;
     }
 
-    public int getCarga_glicemica() {
-        return carga_glicemica;
+    public int getCargaGlicemica() {
+        return cargaGlicemica;
     }
 
-    public void setCarga_glicemica(int carga_glicemica) {
-        this.carga_glicemica = carga_glicemica;
+    public void setCargaGlicemica(int cargaGlicemica) {
+        this.cargaGlicemica = cargaGlicemica;
     }
 
     public Prato getPrato() {
@@ -93,6 +100,29 @@ public class Alimento {
     public void setPrato(Prato prato) {
         this.prato = prato;
     }
-    
+
+    public String getImagemUrl() {
+        return imagemUrl;
+    }
+
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;
+    }
+
+    public String getRecomendacaoSaudavel() {
+        return recomendacaoSaudavel;
+    }
+
+    public void setRecomendacaoSaudavel(String recomendacaoSaudavel) {
+        this.recomendacaoSaudavel = recomendacaoSaudavel;
+    }
+
+    public Boolean getMode() {
+        return mode;
+    }
+
+    public void setMode(Boolean mode) {
+        this.mode = mode;
+    }
 
 }

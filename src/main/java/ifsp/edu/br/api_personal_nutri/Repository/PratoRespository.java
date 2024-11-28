@@ -4,6 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 
 import ifsp.edu.br.api_personal_nutri.Model.Prato;
 
-public interface PratoRespository extends CrudRepository<Prato, Long>{
-    // Pegar o nome e a imagem de certo alimento para mostrar na tela inicial do app
+public interface PratoRespository extends CrudRepository<Prato, Long> {
 }

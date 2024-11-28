@@ -46,6 +46,7 @@ public class PratoController {
                     pratoExistente.setNome(novoPrato.getNome());
                     pratoExistente.setInfo(novoPrato.getInfo());
                     pratoExistente.setId_alimentos(novoPrato.getId_alimentos());
+                    pratoExistente.setMode(novoPrato.getMode());
                     return pratoRespository.save(pratoExistente);
                 })
                 .orElse(null);
