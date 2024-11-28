@@ -34,7 +34,8 @@ public class PratoController {
 
     // POST: Cria um novo prato
     @PostMapping
-    public Prato createPrato(@RequestBody Prato prato) {
+    public Prato createPrato(@RequestBody Prato prato, @RequestParam List<Integer> idAlimentos) {
+        prato.setIdAlimentos(idAlimentos);
         return pratoRespository.save(prato);
     }
 
@@ -49,7 +50,7 @@ public class PratoController {
                     pratoExistente.setFibras(novoPrato.getFibras());
                     pratoExistente.setCargaGlicemica(novoPrato.getCargaGlicemica());
                     pratoExistente.setMode(novoPrato.getMode());
-                    pratoExistente.setAlimentosSelecionados(novoPrato.getAlimentosSelecionados());
+                    pratoExistente.setIdAlimentos(novoPrato.getIdAlimentos());
                     return pratoRespository.save(pratoExistente);
                 })
                 .orElse(null);

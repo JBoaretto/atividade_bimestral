@@ -2,13 +2,10 @@ package ifsp.edu.br.api_personal_nutri.Model;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Prato {
@@ -25,16 +22,14 @@ public class Prato {
     private String recomendacaoSaudavel;
     private String imagemUrl;
     private Boolean mode;
-
-    @OneToMany(mappedBy = "prato", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private List<Alimento> alimentosSelecionados;
+    private List<Integer> idAlimentos;
 
     public Prato() {
     }
 
     
     public Prato(Long id_prato, String nome, double lipidios, double calorias, double fibras, double cargaGlicemica,
-            String recomendacaoSaudavel, String imagemUrl, Boolean mode, List<Alimento> alimentosSelecionados) {
+            String recomendacaoSaudavel, String imagemUrl, Boolean mode, List<Integer> idAlimentos) {
         this.id_prato = id_prato;
         this.nome = nome;
         this.lipidios = lipidios;
@@ -44,7 +39,7 @@ public class Prato {
         this.recomendacaoSaudavel = recomendacaoSaudavel;
         this.imagemUrl = imagemUrl;
         this.mode = mode;
-        this.alimentosSelecionados = alimentosSelecionados;
+        this.idAlimentos = idAlimentos;
     }
 
 
@@ -104,13 +99,7 @@ public class Prato {
     }
 
 
-    public List<Alimento> getAlimentosSelecionados() {
-        return alimentosSelecionados;
-    }
-
-    public void setAlimentosSelecionados(List<Alimento> alimentosSelecionados) {
-        this.alimentosSelecionados = alimentosSelecionados;
-    }
+    
 
     public String getImagemUrl() {
         return imagemUrl;
@@ -134,6 +123,16 @@ public class Prato {
 
     public void setMode(Boolean mode) {
         this.mode = mode;
+    }
+
+
+    public List<Integer> getIdAlimentos() {
+        return idAlimentos;
+    }
+
+
+    public void setIdAlimentos(List<Integer> idAlimentos) {
+        this.idAlimentos = idAlimentos;
     }
 
 
