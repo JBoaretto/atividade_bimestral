@@ -13,7 +13,6 @@ public class ApiPersonalNutriApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApiPersonalNutriApplication.class, args);
 
-		// Nessa branch, trabalharemos o JPA
 		System.out.println("Teste");
 	}
 

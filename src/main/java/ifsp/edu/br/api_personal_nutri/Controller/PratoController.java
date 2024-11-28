@@ -44,9 +44,12 @@ public class PratoController {
         return pratoRespository.findById(id_prato)
                 .map(pratoExistente -> {
                     pratoExistente.setNome(novoPrato.getNome());
-                    pratoExistente.setInfo(novoPrato.getInfo());
-                    pratoExistente.setId_alimentos(novoPrato.getId_alimentos());
+                    pratoExistente.setLipidios(novoPrato.getLipidios());
+                    pratoExistente.setCalorias(novoPrato.getCalorias());
+                    pratoExistente.setFibras(novoPrato.getFibras());
+                    pratoExistente.setCargaGlicemica(novoPrato.getCargaGlicemica());
                     pratoExistente.setMode(novoPrato.getMode());
+                    pratoExistente.setAlimentosSelecionados(novoPrato.getAlimentosSelecionados());
                     return pratoRespository.save(pratoExistente);
                 })
                 .orElse(null);
